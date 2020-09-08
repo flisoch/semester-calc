@@ -32,6 +32,7 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
+    @Transactional
     public SubjectDto getSubject(Long id) {
         Optional<Subject> subject = subjectRepository.findById(id);
         return subject.map(SubjectDto::from).orElse(null);

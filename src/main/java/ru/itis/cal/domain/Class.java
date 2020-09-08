@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Class {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "subject_id")

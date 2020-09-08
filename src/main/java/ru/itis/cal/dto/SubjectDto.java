@@ -34,6 +34,7 @@ public class SubjectDto {
                 .creditType(subject.getCreditType())
                 .syllabus(subject.getSyllabus())
                 .hours(HoursDto.from(subject.getHours()))
+                .classes(subject.getClasses().stream().map(ClassDto::from).collect(Collectors.toList()))
                 .build();
         if (subject.isElective()) {
             subjectDto.setDescriptor(ElectivesDescriptorDto.from(subject.getDescriptor()));
