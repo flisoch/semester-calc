@@ -1,15 +1,14 @@
 package ru.itis.cal.dto;
 
+import com.sun.xml.internal.ws.api.server.SDDocument;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.itis.cal.domain.CreditType;
-import ru.itis.cal.domain.Hours;
-import ru.itis.cal.domain.Subject;
-import ru.itis.cal.domain.Syllabus;
+import ru.itis.cal.domain.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Builder
 @Data
@@ -21,21 +20,25 @@ public class SubjectDto {
     private CourseDto course;
     private Syllabus syllabus;
     private CreditType creditType;
-    private Hours hours;
+    private HoursDto hours;
     private List<ClassDto> classes;
     private boolean isElective;
-    private SubjectDto parentSubject;
-    private List<SubjectDto> electives;
+    private ElectivesDescriptorDto descriptor;
 
     public static SubjectDto from(Subject subject) {
-        return SubjectDto.builder()
+        SubjectDto subjectDto = SubjectDto.builder()
                 .id(subject.getId())
                 .name(subject.getName())
                 .course(CourseDto.from(subject.getCourse()))
-                .syllabus(subject.getSyllabus())
-                .creditType(subject.getCreditType())
-//                .hours(subject.getHours())
                 .isElective(subject.isElective())
+                .creditType(subject.getCreditType())
+                .syllabus(subject.getSyllabus())
+                .hours(HoursDto.from(subject.getHours()))
                 .build();
+        if (subject.isElective()) {
+            subjectDto.setDescriptor(ElectivesDescriptorDto.from(subject.getDescriptor()));
+        }
+
+        return subjectDto;
     }
 }

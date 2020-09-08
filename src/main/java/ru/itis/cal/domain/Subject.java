@@ -30,10 +30,8 @@ public class Subject {
     private List<Class> classes;
     private boolean isElective;
 
-    @ManyToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name="parent_subject_id")
-    private Subject parentSubject;
-    @OneToMany(mappedBy="parentSubject")
-    private List<Subject> electives;
+    @ManyToOne
+    @JoinColumn(name = "electives_desctiptor")
+    private ElectivesDescriptor descriptor;
 
 }
