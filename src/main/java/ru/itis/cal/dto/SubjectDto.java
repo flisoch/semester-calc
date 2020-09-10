@@ -1,6 +1,5 @@
 package ru.itis.cal.dto;
 
-import com.sun.xml.internal.ws.api.server.SDDocument;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
