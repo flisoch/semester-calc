@@ -6,11 +6,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.cal.dto.CalendarEventDto;
 import ru.itis.cal.util.LocalDateConverter;
+import ru.itis.cal.util.LocalDateTimeConverter;
 import ru.itis.cal.util.LocalTimeConverter;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -27,10 +29,10 @@ public class CalendarEvent {
     private LocalTime startTime;
     @Convert(converter = LocalTimeConverter.class)
     private LocalTime endTime;
-    @Convert(converter = LocalDateConverter.class)
-    private LocalDate startDate;
+    @Convert(converter = LocalDateTimeConverter.class)
+    private LocalDateTime startDate;
     private Integer repeatsNumber;
-    @Convert(converter = LocalDateConverter.class)
-    private LocalDate repeatsUntilDate;
+    @Convert(converter = LocalDateTimeConverter.class)
+    private LocalDateTime repeatsUntilDate;
 
 }

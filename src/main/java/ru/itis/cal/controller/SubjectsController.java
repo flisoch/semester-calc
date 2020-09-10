@@ -22,7 +22,7 @@ public class SubjectsController {
         return ResponseEntity.ok(subjectService.getSubjectsBy(filter));
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "/{id}")
     public ResponseEntity<SubjectDto> getSubjectNames(@PathVariable Long id) {
         return ResponseEntity.ok(subjectService.getSubject(id));
     }

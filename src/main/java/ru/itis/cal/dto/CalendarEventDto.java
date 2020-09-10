@@ -1,13 +1,18 @@
 package ru.itis.cal.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import net.bytebuddy.implementation.bind.annotation.Default;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 import ru.itis.cal.domain.CalendarEvent;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -19,9 +24,9 @@ public class CalendarEventDto {
     private DayOfWeek weekDay;
     private LocalTime startTime;
     private LocalTime endTime;
-    private LocalDate startDate;
+    private String startDate = "2020-09-01";
     private Integer repeatsNumber;
-    private LocalDate repeatsUntilDate;
+    private String repeatsUntilDate;
 
     public static CalendarEventDto from (CalendarEvent event) {
         if (event == null) {
@@ -37,7 +42,10 @@ public class CalendarEventDto {
             eventDto.setRepeatsNumber(event.getRepeatsNumber());
         }
         else if (event.getRepeatsUntilDate() != null) {
-            eventDto.setRepeatsUntilDate(event.getRepeatsUntilDate());
+            eventDto.setRepeatsUntilDate(event.getRepeatsUntilDate().toString());
+        }
+        if (event.getStartDate() != null) {
+            eventDto.setStartDate(event.getStartDate().toString());
         }
         return eventDto;
     }
