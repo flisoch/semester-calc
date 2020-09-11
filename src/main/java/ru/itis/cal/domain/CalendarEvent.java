@@ -4,14 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.itis.cal.dto.CalendarEventDto;
-import ru.itis.cal.util.LocalDateConverter;
 import ru.itis.cal.util.LocalDateTimeConverter;
 import ru.itis.cal.util.LocalTimeConverter;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -34,5 +31,6 @@ public class CalendarEvent {
     private Integer repeatsNumber;
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime repeatsUntilDate;
-
+    @OneToOne
+    private Class scheduleClass;
 }

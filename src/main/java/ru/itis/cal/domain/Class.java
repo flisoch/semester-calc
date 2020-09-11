@@ -31,6 +31,6 @@ public class Class {
     )
     private List<Group> groups;
     private String classroomNumber;
-    @Transient
+    @OneToOne
     private CalendarEvent calendarEvent;
 }
