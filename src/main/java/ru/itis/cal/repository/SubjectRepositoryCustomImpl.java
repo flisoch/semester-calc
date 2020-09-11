@@ -1,8 +1,7 @@
 package ru.itis.cal.repository;
 
-import ru.itis.cal.controller.queryFilter.SubjectQueryFilter;
+import ru.itis.cal.dto.queryFilter.SubjectQueryFilter;
 import ru.itis.cal.domain.Course;
-import ru.itis.cal.domain.Group;
 import ru.itis.cal.domain.Subject;
 
 import javax.persistence.EntityManager;

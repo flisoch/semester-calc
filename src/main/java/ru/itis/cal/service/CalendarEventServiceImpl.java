@@ -2,7 +2,7 @@ package ru.itis.cal.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.itis.cal.controller.queryFilter.SubjectQueryFilter;
+import ru.itis.cal.dto.queryFilter.SubjectQueryFilter;
 import ru.itis.cal.domain.CalendarEvent;
 import ru.itis.cal.dto.CalendarEventDto;
 import ru.itis.cal.repository.CalendarEventRepository;

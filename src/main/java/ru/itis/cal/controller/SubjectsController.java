@@ -2,7 +2,7 @@ package ru.itis.cal.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.itis.cal.controller.queryFilter.SubjectQueryFilter;
+import ru.itis.cal.dto.queryFilter.SubjectQueryFilter;
 import ru.itis.cal.dto.SubjectDto;
 import ru.itis.cal.service.SubjectService;
 

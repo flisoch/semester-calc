@@ -1,4 +1,4 @@
-package ru.itis.cal.controller.queryFilter;
+package ru.itis.cal.dto.queryFilter;
 
 import lombok.Data;
 

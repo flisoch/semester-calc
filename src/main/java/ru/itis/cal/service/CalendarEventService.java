@@ -1,6 +1,6 @@
 package ru.itis.cal.service;
 
-import ru.itis.cal.controller.queryFilter.SubjectQueryFilter;
+import ru.itis.cal.dto.queryFilter.SubjectQueryFilter;
 import ru.itis.cal.dto.CalendarEventDto;
 
 import java.util.List;
