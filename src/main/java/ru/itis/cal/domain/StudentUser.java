@@ -6,25 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "groups")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Group {
-
+public class StudentUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String number;
+    private String cookieId;
     @ManyToOne
-    @JoinColumn(name = "course")
-    private Course course;
-    @ManyToMany(mappedBy = "groups")
-    private List<Class> classes;
-    @OneToMany(mappedBy = "group")
-    private List<StudentUser> studentUser;
+    @JoinColumn(name = "groud_id")
+    private Group group;
 }
