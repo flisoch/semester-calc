@@ -2,7 +2,6 @@ package ru.itis.cal.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.itis.cal.dto.queryFilter.SubjectQueryFilter;
 import ru.itis.cal.domain.CalendarEvent;
 import ru.itis.cal.dto.CalendarEventDto;
 import ru.itis.cal.repository.CalendarEventRepository;
@@ -11,7 +10,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,12 +20,6 @@ public class CalendarEventServiceImpl implements CalendarEventService {
     public CalendarEventServiceImpl(CalendarEventRepository calendarEventRepository) {
         this.calendarEventRepository = calendarEventRepository;
     }
-
-    @Override
-    public List<CalendarEventDto> getEvents(SubjectQueryFilter filter) {
-        return null;
-    }
-
     @Override
     public CalendarEventDto getEvent(Long id) {
         Optional<CalendarEvent> event = calendarEventRepository.findById(id);

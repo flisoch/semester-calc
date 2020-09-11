@@ -3,11 +3,8 @@ package ru.itis.cal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.itis.cal.dto.queryFilter.SubjectQueryFilter;
 import ru.itis.cal.dto.CalendarEventDto;
 import ru.itis.cal.service.CalendarEventService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/classes/events")
@@ -16,11 +13,6 @@ public class CalendarEventController {
     @Autowired
     public CalendarEventController(CalendarEventService calendarEventService) {
         this.calendarEventService = calendarEventService;
-    }
-
-    @GetMapping
-    public ResponseEntity<List<CalendarEventDto>> getClassesCalendarEvents(SubjectQueryFilter filter) {
-        return ResponseEntity.ok(calendarEventService.getEvents(filter));
     }
 
     @GetMapping(path = "/{id}")
