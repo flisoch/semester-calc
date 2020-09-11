@@ -35,6 +35,7 @@ public class CalendarEventController {
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity deleteClassEvent(@PathVariable Long id) {
+        calendarEventService.deleteClassEvent(id);
         return (ResponseEntity) ResponseEntity.ok();
     }
 }
