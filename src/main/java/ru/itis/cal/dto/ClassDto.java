@@ -20,6 +20,7 @@ public class ClassDto {
     private ClassType classType;
     private String classroomNumber;
     private TeacherDto teacher;
+    private String subjectName;
     private CalendarEventDto calendarEvent;
 
     public static ClassDto from(Class aClass) {
@@ -32,6 +33,7 @@ public class ClassDto {
                 .classroomNumber(aClass.getClassroomNumber())
                 .teacher(TeacherDto.from(aClass.getTeacher()))
                 .calendarEvent(CalendarEventDto.from(aClass.getCalendarEvent()))
+                .subjectName(aClass.getSubject().getName())
                 .build();
     }
 }

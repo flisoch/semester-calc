@@ -22,9 +22,8 @@ import java.time.LocalTime;
 public class CalendarEventDto {
     private Long id;
     private DayOfWeek weekDay;
-    private LocalTime startTime;
-    private LocalTime endTime;
-    private String startDate = "2020-09-01";
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
     private Integer repeatsNumber;
     private String repeatsUntilDate;
 
@@ -43,9 +42,6 @@ public class CalendarEventDto {
         }
         else if (event.getRepeatsUntilDate() != null) {
             eventDto.setRepeatsUntilDate(event.getRepeatsUntilDate().toString());
-        }
-        if (event.getStartDate() != null) {
-            eventDto.setStartDate(event.getStartDate().toString());
         }
         return eventDto;
     }

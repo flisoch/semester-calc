@@ -20,6 +20,7 @@ public class Class {
     @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
+    @Enumerated(EnumType.STRING)
     private ClassType classType;
     @ManyToOne
     @JoinColumn(name = "teacher_id")

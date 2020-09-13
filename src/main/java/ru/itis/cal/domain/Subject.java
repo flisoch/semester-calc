@@ -23,6 +23,7 @@ public class Subject {
     private Course course;
     @OneToOne
     private Syllabus syllabus;
+    @Enumerated(EnumType.STRING)
     private CreditType creditType;
     @OneToOne
     private Hours hours;

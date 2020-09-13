@@ -22,12 +22,10 @@ public class CalendarEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private DayOfWeek weekDay;
-    @Convert(converter = LocalTimeConverter.class)
-    private LocalTime startTime;
-    @Convert(converter = LocalTimeConverter.class)
-    private LocalTime endTime;
     @Convert(converter = LocalDateTimeConverter.class)
-    private LocalDateTime startDate;
+    private LocalDateTime startTime;
+    @Convert(converter = LocalDateTimeConverter.class)
+    private LocalDateTime endTime;
     private Integer repeatsNumber;
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime repeatsUntilDate;

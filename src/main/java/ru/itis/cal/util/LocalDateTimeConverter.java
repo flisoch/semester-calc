@@ -9,16 +9,16 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Converter(autoApply = true)
-public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime, Date> {
+public class LocalDateTimeConverter implements AttributeConverter<LocalDateTime, Timestamp> {
 
     @Override
-    public Date convertToDatabaseColumn(LocalDateTime localDateTime) {
-        return localDateTime == null ? null : Date.valueOf(localDateTime.toLocalDate());
+    public Timestamp convertToDatabaseColumn(LocalDateTime localDateTime) {
+        return localDateTime == null ? null : Timestamp.valueOf(localDateTime);
     }
 
     @Override
-    public LocalDateTime convertToEntityAttribute(Date timestamp) {
-        return timestamp == null ? null :LocalDateTime.of(timestamp.toLocalDate(), LocalTime.MIN);
+    public LocalDateTime convertToEntityAttribute(Timestamp timestamp) {
+        return timestamp == null ? null : timestamp.toLocalDateTime();
     }
 
 }

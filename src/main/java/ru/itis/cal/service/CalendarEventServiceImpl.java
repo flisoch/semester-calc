@@ -44,7 +44,6 @@ public class CalendarEventServiceImpl implements CalendarEventService {
                 .weekDay(classEventDto.getWeekDay())
                 .startTime(classEventDto.getStartTime())
                 .endTime(classEventDto.getEndTime())
-                .startDate(LocalDateTime.of(LocalDate.parse(classEventDto.getStartDate()), LocalTime.MIN))
                 .build();
         if (classEventDto.getRepeatsNumber() != null) {
             event.setRepeatsNumber(classEventDto.getRepeatsNumber());
