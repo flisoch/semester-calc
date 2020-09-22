@@ -1,5 +1,6 @@
 package ru.itis.cal.service;
 
+import ru.itis.cal.domain.StudentUser;
 import ru.itis.cal.dto.ClassDto;
 
 import javax.servlet.http.Cookie;
@@ -13,4 +14,6 @@ public interface StudentUserService {
     ClassDto saveClassesById(Long userId, Long id);
 
     void removeClassFromUserSchedule(Long userId, Long classId);
+
+    StudentUser getUser(HttpServletRequest request);
 }

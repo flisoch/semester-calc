@@ -3,6 +3,7 @@ package ru.itis.cal.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.itis.cal.domain.Class;
+import ru.itis.cal.domain.StudentUser;
 
 import java.util.List;
 

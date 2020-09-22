@@ -85,6 +85,7 @@ public class StudentUserServiceImpl implements StudentUserService {
         }
     }
 
+    @Override
     public StudentUser getUser(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         Optional<Cookie> userId = Arrays.stream(cookies).filter(cookie -> cookie.getName().equals("userId")).findAny();

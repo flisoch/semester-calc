@@ -100,7 +100,7 @@ public class GoogleCalendarConnector {
     }
 
     @RequestMapping
-    public ResponseEntity sheetData(HttpServletRequest request, @RequestParam(defaultValue = "11-701") String groupNumber) throws IOException {
+    public ResponseEntity saveGroupCalendar(HttpServletRequest request, @RequestParam(defaultValue = "11-701") String groupNumber) throws IOException {
 //        groupNumber = "11-701";
         Credential credentials = getCredentials(request);
         if (credentials == null) {
@@ -120,6 +120,34 @@ public class GoogleCalendarConnector {
             try {
                 Event execute = service.events().insert(createdCalendar.getId(), event).execute();
                 eventsHtmlLinks.add(execute.getHtmlLink());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return ResponseEntity.ok("<a href=\"http://localhost:8080/google-calendar/user-events?calendarId=" + createdCalendar.getId() + "\">calendarEvents</a>" + " "
+                + eventsHtmlLinks.toString());
+    }
+
+    @RequestMapping(path = "/by-user")
+    public ResponseEntity AddUserCalendar(HttpServletRequest request, @RequestParam(defaultValue = "11-701") String groupNumber) throws IOException {
+        Credential credentials = getCredentials(request);
+        if (credentials == null) {
+            return ResponseEntity
+                    .status(HttpStatus.FORBIDDEN)
+                    .body("The request is missing a valid API key.\n Please authorize in <a href=\"http://localhost:8080/google-calendar/signin\">link</a>");
+        }
+        Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, credentials)
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+        com.google.api.services.calendar.model.Calendar groupCalendar = createGroupCalendar(groupNumber);
+        com.google.api.services.calendar.model.Calendar createdCalendar = service.calendars().insert(groupCalendar).execute();
+        List<ClassDto> classes = classesService.getClassesByUser(request);
+        List<Event> events = googleService.mapClassesToEvents(classes);
+        List<String> eventsHtmlLinks = new ArrayList<>();
+        events.forEach(event -> {
+            try {
+                Event execute = service.events().insert(createdCalendar.getId(), event).execute();
+                eventsHtmlLinks.add("<a href=\"" + execute.getHtmlLink() + "\">event" + execute.getId() + "</a>");
             } catch (IOException e) {
                 e.printStackTrace();
             }
