@@ -37,4 +37,9 @@ public class ClassesServiceImpl implements ClassesService {
     public void deleteClass(Long id) {
         classRepository.deleteById(id);
     }
+
+    @Override
+    public List<Class> saveAll(List<Class> classes) {
+        return null;
+    }
 }
