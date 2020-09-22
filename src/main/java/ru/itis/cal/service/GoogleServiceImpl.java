@@ -64,11 +64,11 @@ public class GoogleServiceImpl implements GoogleService {
     }
 
     private String extractSummary(ClassDto classDto) {
-        return classDto.getSubjectName() +
-                classDto.getClassroomNumber() +
-                classDto.getClassType() +
-                classDto.getTeacher().getLastName() +
-                classDto.getTeacher().getName() +
-                classDto.getTeacher().getMiddleName();
+        return classDto.getSubjectName() + " " +
+                classDto.getClassroomNumber() + " " +
+                classDto.getClassType().toString().charAt(0) + " " +
+                classDto.getTeacher().getLastName() + " " +
+                classDto.getTeacher().getName() + "." +
+                classDto.getTeacher().getMiddleName() + ".";
     }
 }

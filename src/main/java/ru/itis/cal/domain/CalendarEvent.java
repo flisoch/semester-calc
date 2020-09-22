@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itis.cal.util.DayOfWeekIntegerConverter;
 import ru.itis.cal.util.LocalDateTimeConverter;
 import ru.itis.cal.util.LocalTimeConverter;
 
@@ -21,6 +22,7 @@ public class CalendarEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Convert(converter = DayOfWeekIntegerConverter.class)
     private DayOfWeek weekDay;
     @Convert(converter = LocalDateTimeConverter.class)
     private LocalDateTime startTime;

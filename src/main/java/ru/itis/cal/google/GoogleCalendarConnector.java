@@ -9,13 +9,10 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.DateTime;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.calendar.model.CalendarListEntry;
 import com.google.api.services.calendar.model.Event;
-import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,9 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.itis.cal.CalApplication;
-import ru.itis.cal.domain.StudentUser;
 import ru.itis.cal.dto.ClassDto;
-import ru.itis.cal.dto.Range;
 import ru.itis.cal.service.ClassesService;
 import ru.itis.cal.service.GoogleService;
 import ru.itis.cal.service.StudentUserService;
@@ -105,7 +100,7 @@ public class GoogleCalendarConnector {
     }
 
     @RequestMapping
-    public ResponseEntity sheetData(HttpServletRequest request, @RequestParam String groupNumber) throws IOException {
+    public ResponseEntity sheetData(HttpServletRequest request, @RequestParam(defaultValue = "11-701") String groupNumber) throws IOException {
 //        groupNumber = "11-701";
         Credential credentials = getCredentials(request);
         if (credentials == null) {
