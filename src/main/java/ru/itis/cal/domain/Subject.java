@@ -29,7 +29,7 @@ public class Subject {
     private Hours hours;
     @OneToMany(mappedBy = "subject")
     private List<Class> classes;
-    private boolean isElective;
+    private boolean elective;
 
     @ManyToOne
     @JoinColumn(name = "electives_desctiptor")

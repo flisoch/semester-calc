@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ScheduleClassRepository extends JpaRepository<Class, Long> {
     List<Class> findByGroups_number(String groupNumber);
+    List<Class> findBySubject_electiveAndGroups_number(Boolean isElective, String groupNumber);
 }

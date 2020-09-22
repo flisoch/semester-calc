@@ -31,6 +31,9 @@ public class Class {
             inverseJoinColumns = {@JoinColumn(name = "group_id")}
     )
     private List<Group> groups;
+
+    @ManyToMany(mappedBy = "classes")
+    private List<StudentUser> studentUsers;
     private String classroomNumber;
     @OneToOne
     private CalendarEvent calendarEvent;
