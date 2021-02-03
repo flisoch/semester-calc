@@ -17,6 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableJpaRepositories(basePackages = "ru.itis.cal.repository")
 @PropertySource("classpath:application.properties")
 @EnableTransactionManagement
+// http://localhost:8080/swagger-ui/index.html
 @EnableSwagger2
 public class ApplicationConfiguration {
     @Bean

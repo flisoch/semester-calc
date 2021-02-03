@@ -50,7 +50,9 @@ public class StudentUserServiceImpl implements StudentUserService {
         List<Class> classes = classRepository.findBySubject_electiveAndGroups_number(false, "11-701");
         studentUser.setClasses(classes);
         studentUserRepository.save(studentUser);
-        return new Cookie("userId", hashCode.toString());
+        Cookie cookie = new Cookie("userId", hashCode.toString());
+        cookie.setPath("/");
+        return cookie;
     }
 
     @Override
