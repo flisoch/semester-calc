@@ -94,7 +94,14 @@ public class SubjectServiceImpl implements SubjectService {
                         .filter(subject -> subject.getCreditType().equals(CreditType.EXAM))
                         .count())
                 ;
-        int classesPerWeek = classes.size();
+        int classesPerWeek = Math.toIntExact(notElectives.stream()
+                .map(subject -> subject.getClasses().size())
+                .reduce(0, Integer::sum)
+        )
+                +
+                Math.toIntExact(electives.stream()
+                        .map(subject -> subject.getClasses().size())
+                        .reduce(0, Integer::sum));
         double classesPerDay = classesPerWeek / 6.0;
         LocalDate todayDate = LocalDate.now();
         DayOfWeek dow = todayDate.getDayOfWeek();
