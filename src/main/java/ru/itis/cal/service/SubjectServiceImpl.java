@@ -61,12 +61,9 @@ public class SubjectServiceImpl implements SubjectService {
     @Transactional
     public SemesterStats getSemesterStatsByGroupOrUser(String groupNumber, HttpServletRequest request) {
         List<Class> classes;
-        StudentUser user = studentUserService.getUser(request);
-        if (user != null) {
-            classes = user.getClasses();
-        } else {
-            classes = classRepository.findByGroups_number(groupNumber);
-        }
+
+        classes = classRepository.findByGroups_number(groupNumber);
+
         List<Subject> subjects = classes.stream()
                 .map(Class::getSubject)
                 .distinct()
@@ -91,7 +88,7 @@ public class SubjectServiceImpl implements SubjectService {
                 .count())
                 +
                 Math.toIntExact(electives.stream()
-                        .filter(subject -> subject.getCreditType().equals(CreditType.EXAM))
+                        .filter(subject -> subject.getCreditType().equals(CreditType.CREDIT))
                         .count())
                 ;
         int classesPerWeek = Math.toIntExact(notElectives.stream()
