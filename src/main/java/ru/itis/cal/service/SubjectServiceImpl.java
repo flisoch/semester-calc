@@ -64,8 +64,7 @@ public class SubjectServiceImpl implements SubjectService {
         StudentUser user = studentUserService.getUser(request);
         if (user != null) {
             classes = user.getClasses();
-        }
-        else {
+        } else {
             classes = classRepository.findByGroups_number(groupNumber);
         }
         List<Subject> subjects = classes.stream()
@@ -80,12 +79,21 @@ public class SubjectServiceImpl implements SubjectService {
                 .filter(subject -> !subject.isElective())
                 .collect(Collectors.toList());
         int subjectsCount = electives.size() + notElectives.size();
-        int examsCount = Math.toIntExact(subjects.stream()
+        int examsCount = Math.toIntExact(notElectives.stream()
                 .filter(subject -> subject.getCreditType().equals(CreditType.EXAM))
-                .count());
-        int creditsCount = Math.toIntExact(subjects.stream()
+                .count())
+                +
+                Math.toIntExact(electives.stream()
+                        .filter(subject -> subject.getCreditType().equals(CreditType.EXAM))
+                        .count());
+        int creditsCount = Math.toIntExact(notElectives.stream()
                 .filter(subject -> subject.getCreditType().equals(CreditType.CREDIT))
-                .count());
+                .count())
+                +
+                Math.toIntExact(electives.stream()
+                        .filter(subject -> subject.getCreditType().equals(CreditType.EXAM))
+                        .count())
+                ;
         int classesPerWeek = classes.size();
         double classesPerDay = classesPerWeek / 6.0;
         LocalDate todayDate = LocalDate.now();
