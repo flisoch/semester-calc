@@ -22,4 +22,12 @@ public class Hours {
 
     @OneToOne
     private Subject subject;
+
+    public Integer totalInHouse() {
+        return lecture+seminar+practice+laboratory;
+    }
+
+    public Double ratioSelfStudyToInHouse() {
+        return new Double(this.selfDependent) /totalInHouse();
+    }
 }

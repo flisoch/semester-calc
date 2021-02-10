@@ -17,5 +17,6 @@ public class SemesterStats {
     private Double classesPerDay;
     private Integer classesToday;
     private Double hoursPerWeek;
+    private Double selfStudyHoursPerWeek;
     private Integer weeksUntilExams;
 }

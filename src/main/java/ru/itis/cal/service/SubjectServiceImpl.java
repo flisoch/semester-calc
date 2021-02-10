@@ -109,6 +109,16 @@ public class SubjectServiceImpl implements SubjectService {
                 .filter(c -> c.getCalendarEvent().getWeekDay().equals(dow))
                 .count());
         double hoursPerWeek = classesPerWeek * 1.5;
+        double averageRatio = (notElectives.stream()
+                .map(subject -> subject.getHours().ratioSelfStudyToInHouse())
+                .reduce(0.0, Double::sum)
+                +
+                notElectives.stream()
+                        .map(subject -> subject.getHours().ratioSelfStudyToInHouse())
+                        .reduce(0.0, Double::sum)) / subjectsCount;
+
+        double selfStudyHoursPerWeek = hoursPerWeek * averageRatio;
+
         LocalDate lastDayOfYear = todayDate.with(lastDayOfYear());
         TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
         int weekNumber = todayDate.get(woy);
@@ -121,6 +131,7 @@ public class SubjectServiceImpl implements SubjectService {
                 .classesPerDay(classesPerDay)
                 .classesToday(classesToday)
                 .hoursPerWeek(hoursPerWeek)
+                .selfStudyHoursPerWeek(selfStudyHoursPerWeek)
                 .weeksUntilExams(weeksUntilExams)
                 .build();
     }
