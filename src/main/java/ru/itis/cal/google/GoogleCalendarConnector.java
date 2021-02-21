@@ -44,7 +44,7 @@ public class GoogleCalendarConnector {
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
     private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
-    private final String CALLBACK_URI = "http://localhost:8080/google-calendar/oauth";
+    private final String CALLBACK_URI = "http://192.168.1.167.nip.io:8080/google-calendar/oauth";
     private static final List<String> SCOPES = Collections.singletonList(CalendarScopes.CALENDAR);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
 
@@ -87,7 +87,7 @@ public class GoogleCalendarConnector {
                 saveToken(code, cookie.getValue());
                 response.addCookie(cookie);
             }
-            return (ResponseEntity) ResponseEntity.ok("token is saved, sent you a cookie! <a href=\"http://localhost:8080/google-calendar/user-events\">Continue</a>");
+            return (ResponseEntity) ResponseEntity.ok("token is saved, sent you a cookie! <a href=\"http://192.168.1.167.nip.io:8080/google-calendar/user-events\">Continue</a>");
         }
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No code received from google oauth");
@@ -106,7 +106,7 @@ public class GoogleCalendarConnector {
         if (credentials == null) {
             return ResponseEntity
                     .status(HttpStatus.FORBIDDEN)
-                    .body("The request is missing a valid API key.\n Please authorize in <a href=\"http://localhost:8080/google-calendar/signin\">link</a>");
+                    .body("The request is missing a valid API key.\n Please authorize in <a href=\"http://192.168.1.167.nip.io:8080/google-calendar/signin\">link</a>");
         }
         Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, credentials)
                 .setApplicationName(APPLICATION_NAME)
@@ -124,7 +124,7 @@ public class GoogleCalendarConnector {
                 e.printStackTrace();
             }
         });
-        return ResponseEntity.ok("<a href=\"http://localhost:8080/google-calendar/user-events?calendarId=" + createdCalendar.getId() + "\">calendarEvents</a>" + " "
+        return ResponseEntity.ok("<a href=\"http://192.168.1.167.nip.io:8080/google-calendar/user-events?calendarId=" + createdCalendar.getId() + "\">calendarEvents</a>" + " "
                 + eventsHtmlLinks.toString());
     }
 
@@ -134,7 +134,7 @@ public class GoogleCalendarConnector {
         if (credentials == null) {
             return ResponseEntity
                     .status(HttpStatus.FORBIDDEN)
-                    .body("The request is missing a valid API key.\n Please authorize in <a href=\"http://localhost:8080/google-calendar/signin\">link</a>");
+                    .body("The request is missing a valid API key.\n Please authorize in <a href=\"http://192.168.1.167.nip.io:8080/google-calendar/signin\">link</a>");
         }
         Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, credentials)
                 .setApplicationName(APPLICATION_NAME)
@@ -152,7 +152,7 @@ public class GoogleCalendarConnector {
                 e.printStackTrace();
             }
         });
-        return ResponseEntity.ok("<a href=\"http://localhost:8080/google-calendar/user-events?calendarId=" + createdCalendar.getId() + "\">calendarEvents</a>" + " "
+        return ResponseEntity.ok("<a href=\"http://192.168.1.167.nip.io:8080/google-calendar/user-events?calendarId=" + createdCalendar.getId() + "\">calendarEvents</a>" + " "
                 + eventsHtmlLinks.toString());
     }
 
@@ -181,7 +181,7 @@ public class GoogleCalendarConnector {
         if (credentials == null) {
             return ResponseEntity
                     .status(HttpStatus.FORBIDDEN)
-                    .body("The request is missing a valid API key.\n Please authorize in <a href=\"http://localhost:8080/google-calendar/signin\">link</a>");
+                    .body("The request is missing a valid API key.\n Please authorize in <a href=\"http://192.168.1.167.nip.io:8080/google-calendar/signin\">link</a>");
         }
         Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, credentials)
                 .setApplicationName(APPLICATION_NAME)
